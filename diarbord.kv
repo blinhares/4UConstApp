@@ -1,0 +1,314 @@
+
+<DiarBord@Screen>:
+    name:"db"
+    BoxLayout:
+        size_hint:1,1
+        spacing:5
+        padding:(5,5,5,5)
+        orientation:'vertical'
+        GridLayout:
+            cols:2
+            size_hint:1, None
+            height:dp(55)
+            Button:
+                text:"voltar" #colocar imagem
+                size_hint:None, None
+                height:dp(55)
+                width:dp(55)
+                halign:'center'
+                valign:'center'
+                background_color:.40,.59,.8,.7
+                text_size:self.size
+                on_press:
+                    root.manager.current = "mp" #acessa ogerenciador de telas e muda
+
+
+            Image:
+                source: 'img/4u.png'
+                size_hint:1, None
+                pos_hint_x:'center'
+                height:dp(55)
+                halign:'center'
+                valign:'center'
+
+        Button:
+            text:"Diario de Bordo"
+            size_hint:1, None
+            height:dp(55)
+            halign:'center'
+            valign:'center'
+            text_size: self.size
+            background_color:.40,.59,.8,.7
+
+        ScrollView:
+            size_hint:1, 1
+            BoxLayout:
+                orientation:'vertical'
+                size_hint:1, None
+                height:dp(600) #altura total
+
+                Spinner:
+                    text:"Escolha uma Altenativa"
+                    text_size:self.size
+                    halign:'center'
+                    valign:'center'
+                    text_size:self.size
+                    size_hint:1, None
+                    height:dp(50)
+                    values:'Montagem', 'Guindastes', 'Transportes','Eletromecanica', 'Adm.'
+                    on_text:
+                        root.coletar(self.text,1)
+                Button:
+                    text:"Insira o Nome do Condutor"
+                    size_hint:1, None
+                    height:dp(50)
+                    halign:'center'
+                    valign:'center'
+                    text_size: self.size
+                    background_color:.40,.59,.8,.7
+                TextInput:
+                    text:"Ex: Pedro"
+                    size_hint:1, None
+                    height:dp(50)
+                    multiline:False #desativa a multilinha
+                    halign:'center'
+                    valign:'center'
+                    text_size: self.size
+                    background_color:.40,.59,.8,.7
+                    on_focus:
+                        root.coletar(self.text,2) #var   #quando clicado salva o nome na variavel
+                Button:
+                    text:"Insira a Data"
+                    size_hint:1, None
+                    height:dp(50)
+                    halign:'center'
+                    valign:'center'
+                    text_size: self.size
+                    background_color:.40,.59,.8,.7
+                GridLayout:
+                    cols:3
+                    size_hint:1, None
+                    height:dp(50)
+                    Spinner:
+                        text:"Escolha o dia"
+                        text_size:self.size
+                        halign:'center'
+                        valign:'center'
+                        size_hint:1, None
+                        height:dp(50)
+                        values:'1', '2', '3','4', '5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'
+                        on_text:
+                            root.coletar(self.text,3) #var   #quando clicado salva o nome na variavel
+                    Spinner:
+                        text:"Escolha o Mes"
+                        text_size:self.size
+                        halign:'center'
+                        valign:'center'
+                        size_hint:1, None
+                        height:dp(50)
+                        values:'Janeiro', 'Fevereiro', 'Marco','Abril', 'Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'
+                        on_text:
+                            root.coletar(self.text,4) #var   #quando clicado salva o nome na variavel
+                    Spinner:
+                        text:"Escolha o Ano"
+                        text_size:self.size
+                        halign:'center'
+                        valign:'center'
+                        size_hint:1, None
+                        height:dp(50)
+                        values:'2018', '2019', '2020'
+                        on_text:
+                            root.coletar(self.text,5) #var   #quando clicado salva o nome na variavel
+                Button:
+                    text:"Insira a Placa do Veiculo"
+                    size_hint:1, None
+                    height:dp(50)
+                    halign:'center'
+                    valign:'center'
+                    text_size: self.size
+                    background_color:.40,.59,.8,.7
+                TextInput:
+                    text:"Ex: ABC1234"
+                    size_hint:1, None
+                    height:dp(50)
+                    multiline:False #desativa a multilinha
+                    halign:'center'
+                    valign:'center'
+                    text_size: self.size
+                    background_color:.40,.59,.8,.7
+                    on_focus:
+                        root.coletar(self.text,6) #var   #quando clicado salva o nome na variavel
+                GridLayout:
+                    cols:2
+                    size_hint:1, None
+                    height:dp(50)
+                    Button:
+                        text:"Hora de Entrada"
+                        size_hint:1, None
+                        height:dp(50)
+                        halign:'center'
+                        valign:'center'
+                        text_size: self.size
+                        background_color:.40,.59,.8,.7
+                    Button:
+                        text:"Quilometragem de Entrada"
+                        size_hint:1, None
+                        height:dp(50)
+                        halign:'center'
+                        valign:'center'
+                        text_size: self.size
+                        background_color:.40,.59,.8,.7
+                GridLayout:
+                    cols:3
+                    size_hint:1, None
+                    height:dp(50)
+                    Spinner:
+                        text:"Insira a Hora"
+                        text_size:self.size
+                        halign:'center'
+                        valign:'center'
+                        size_hint:.25, None
+                        height:dp(50)
+                        values:'05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','00','01','02','03','04'
+                        on_text:
+                            root.coletar(self.text,7) #var   #quando clicado salva o nome na variavel
+                    Spinner:
+                        text:"Insira os Minutos"
+                        text_size:self.size
+                        halign:'center'
+                        valign:'center'
+                        size_hint:.25, None
+                        height:dp(50)
+                        values:'00','10', '20', '30','40','50'
+                        on_text:
+                            root.coletar(self.text,8) #var   #quando clicado salva o nome na variavel
+                    TextInput:
+                        text:"Ex: 108432"
+                        size_hint:.5, None
+                        height:dp(50)
+                        multiline:False #desativa a multilinha
+                        halign:'center'
+                        valign:'center'
+                        text_size: self.size
+                        background_color:.40,.59,.8,.7
+                        on_focus:
+                            root.coletar(self.text,9) #var   #quando clicado salva o nome na variavel
+
+                GridLayout:
+                    cols:2
+                    size_hint:1, None
+                    height:dp(50)
+                    Button:
+                        text:"Hora de Saida"
+                        size_hint:1, None
+                        height:dp(50)
+                        halign:'center'
+                        valign:'center'
+                        text_size: self.size
+                        background_color:.40,.59,.8,.7
+                    Button:
+                        text:"Quilometragem de Saida"
+                        size_hint:1, None
+                        height:dp(50)
+                        halign:'center'
+                        valign:'center'
+                        text_size: self.size
+                        background_color:.40,.59,.8,.7
+                GridLayout:
+                    cols:3
+                    size_hint:1, None
+                    height:dp(50)
+                    Spinner:
+                        text:"Insira a Hora"
+                        text_size:self.size
+                        halign:'center'
+                        valign:'center'
+                        size_hint:.25, None
+                        height:dp(50)
+                        values:'05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','00','01','02','03','04'
+                        on_text:
+                            root.coletar(self.text,10) #var   #quando clicado salva o nome na variavel
+                    Spinner:
+                        text:"Insira os Minutos"
+                        text_size:self.size
+                        halign:'center'
+                        valign:'center'
+                        size_hint:.25, None
+                        height:dp(50)
+                        values:'00','10', '20', '30','40','50'
+                        on_text:
+                            root.coletar(self.text,11) #var   #quando clicado salva o nome na variavel
+                    TextInput:
+                        text:"Ex: 108432"
+                        size_hint:.5, None
+                        height:dp(50)
+                        multiline:False #desativa a multilinha
+                        halign:'center'
+                        valign:'center'
+                        text_size: self.size
+                        background_color:.40,.59,.8,.7
+                        on_focus:
+                            root.coletar(self.text,12) #var   #quando clicado salva o nome na variavel
+
+                GridLayout:
+                    cols:2
+                    size_hint:1, None
+                    height:dp(50)
+                    Button:
+                        text:"Cancelar"
+                        size_hint:1, None
+                        height:dp(50)
+                        halign:'center'
+                        valign:'center'
+                        text_size: self.size
+                        background_color:.40,.59,.8,.7
+                        on_press:
+                            root.manager.current = "mp" #acessa ogerenciador de telas e muda
+                    Button:
+                        text:"Salvar"
+                        size_hint:1, None
+                        height:dp(50)
+                        halign:'center'
+                        valign:'center'
+                        text_size: self.size
+                        background_color:.40,.59,.8,.7
+                        on_press:
+                            root.verificardados()
+
+                    #root.manager.current = "mp"
+
+
+<AvisoDb@Popup>:
+    auto_dismiss: False
+    size_hint:.8,.5
+    title:"Atencao"
+    auto_dismiss:'False'
+    BoxLayout:
+        orientation:'vertical'
+        Label:
+            text: 'VERIFIQUE SE TODOS OS CAMPOS \nESTAO CORRETOS POS NAO \nE POSSIVEL ALTERA-LOS DEPOIS\n\nDESEJA PROSSEGUIR COM A OPERACAO? '
+            text_size:self.size
+            halign:'center'
+            valign:'center'
+        GridLayout:
+            cols:2
+            size_hint:1, None
+            height:dp(50)
+            Button:
+                text:"Retornar"
+                size_hint:1, None
+                height:dp(50)
+                halign:'center'
+                valign:'center'
+                text_size: self.size
+                on_press:
+                    root.dismiss()
+            Button:
+                text:"Salvar"
+                size_hint:1, None
+                height:dp(50)
+                halign:'center'
+                valign:'center'
+                text_size: self.size
+                on_press:
+                    #todo implementar função salvar
