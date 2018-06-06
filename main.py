@@ -13,7 +13,7 @@ Window.softinput_mode = 'below_target' #PARA QUE O TECLADO N ESCONDA OS INPUT
 Window.clearcolor =[1,1,1,1] #ALTERA A COR DE FUNDO PARA BRANCO
 
 
-import diariodebordo #IMPORTAR CODIGO PARA DIARIO DE BORDO
+import diarbordpycode #IMPORTAR CODIGO PARA DIARIO DE BORDO
 
 
 class MenuP(Screen): #cria a classe do Menu Principal
