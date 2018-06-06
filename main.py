@@ -9,45 +9,17 @@ from kivy.uix.label import Label
 from kivy.core.window import Window
 from kivy.factory import Factory
 
-
 Window.softinput_mode = 'below_target' #PARA QUE O TECLADO N ESCONDA OS INPUT
 Window.clearcolor =[1,1,1,1] #ALTERA A COR DE FUNDO PARA BRANCO
+
+
+import diariodebordo #IMPORTAR CODIGO PARA DIARIO DE BORDO
 
 
 class MenuP(Screen): #cria a classe do Menu Principal
     pass
 
 class AvisoDb(Popup):
-    pass
-
-class DiarBord(Screen): #cria a classe dodiario de bordo
-    legenda = ['Diario de Bordo', 'Tipo', 'Nome', 'Dia', 'Mes', 'Ano', 'Placa', 'Hora Entrada', 'Minuto Entrada','Quilom. Entrada', 'Hora Saida', 'Minuto Saida', 'Quilom. Saida']
-    dados = ['Diario de Bordo','Tipo','Nome','Dia','Mes','Ano','Placa','Hora Entrada','Minuto Entrada','Quilom. Entrada','Hora Saida','Minuto Saida','Quilom. Saida']
-
-    def coletar(self,arg,ord): #coleta dados das entradas
-        self.dados[ord] = arg
-    def verificardados(self):
-        validador = 0
-        for dado in self.dados:
-            for leg in self.legenda:
-                if dado == leg:
-                    validador = validador + 1
-
-        if validador > 0: #se houver erro nos dados avisar ao usuario
-            popup = Popup(title='Aviso', content=Label(text='Dados Incompletos.\n Favor verificar'),
-                          auto_dismiss=True, size_hint=(.5,.5))
-            popup.open()
-
-        if validador == 0: #se não houver erro passar ao proximo passo
-            return AvisoDb().open() #retorna POPUP criado no arquivo kv e declarado no corpo de main
-        '''
-        GerTela.current ='mp'
-        return GerTela().current
-        '''
-    def salvar (self):
-        #todo DEFINIR FUNCAO SALVAR
-        pass
-
     pass
 
 class GerTela(ScreenManager):

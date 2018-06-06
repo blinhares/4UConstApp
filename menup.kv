@@ -1,0 +1,179 @@
+#:import Factory kivy.factory.Factory
+<Info@Popup>:
+    auto_dismiss: False
+    size_hint:.8,.5
+    title:"Informações do APP"
+    auto_dismiss:'True'
+    Label:
+        text: '4U Contruções\n\nEste aplicativo foi desenvolvido na Liguagem Python Utilizando a Biblioteca Kivy por:\nBruno B. Linhares'
+        text_size:self.size
+        halign:'center'
+        valign:'center'
+
+<Info2@Popup>:
+    auto_dismiss: False
+    size_hint:.8,.5
+    title:"Aviso"
+    auto_dismiss:'True'
+    Label:
+        text: 'Estamos em desenvolvimento, em breve apresentaremos novidade'
+        text_size:self.size
+        halign:'center'
+        valign:'center'
+
+<MenuP@Screen>:
+    name:"mp"
+    BoxLayout:
+        size_hint:1,1
+        spacing:5
+        padding:(5,5,5,5)
+        orientation:'vertical'
+        GridLayout:
+            cols:2
+            size_hint:1, None
+            height:dp(55)
+
+            Image:
+                source: 'img/4u.png'
+                size_hint:4, None
+                height:dp(55)
+                halign:'center'
+                valign:'center'
+            Button:
+                background_normal:'img/inf.png'
+                size_hint:None, None
+                height:dp(55)
+                width:dp(55)
+                halign:'center'
+                valign:'center'
+                on_press: Factory.Info().open()
+
+
+
+        Button:
+            text:"Menu Principal"
+            size_hint:1, None
+            height:dp(55)
+            halign:'center'
+            valign:'center'
+            text_size: self.size
+            background_color:.40,.59,.8,.7
+
+        ScrollView:
+            size_hint:1,1 #O TAMANHO DE SCROLVIEW EM Y DEVE SER VARIAVEL POREM O DE BOXLAYOUT NAO
+            BoxLayout:
+                orientation:'vertical'
+                size_hint:1, None
+                height:dp(480) #boxlayou tem que ter o tamanho da soma das labels
+                Button:
+                    size_hint:1, None
+                    text:"1 - Diario de Bordo"
+                    height:dp(80)
+                    halign:'center'
+                    valign:'center'
+                    text_size: self.size
+                    background_color:.40,.8,.8,.7
+                    on_press:
+                        root.manager.current = "db" #acessa ogerenciador de telas e muda
+                Button:
+                    size_hint:1, None
+                    text:"Opicao de N. 02"
+                    height:dp(80)
+                    halign:'center'
+                    valign:'center'
+                    text_size: self.size
+                    background_color:.40,.8,.8,.7
+                    on_press:Factory.Info2().open()
+                Button:
+                    size_hint:1, None
+                    text:"Opicao de N. 03"
+                    height:dp(80)
+                    halign:'center'
+                    valign:'center'
+                    text_size: self.size
+                    background_color:.40,.8,.8,.7
+                    on_press:Factory.Info2().open()
+                Button:
+                    size_hint:1, None
+                    text:"Opicao de N. 04"
+                    height:dp(80)
+                    halign:'center'
+                    valign:'center'
+                    text_size: self.size
+                    background_color:.40,.8,.8,.7
+                    on_press:Factory.Info2().open()
+                Button:
+                    size_hint:1, None
+                    text:"Opicao de N. 05"
+                    height:dp(80)
+                    halign:'center'
+                    valign:'center'
+                    text_size: self.size
+                    background_color:.40,.8,.8,.7
+                    on_press:Factory.Info2().open()
+                Button:
+                    size_hint:1, None
+                    text:"Opicao de N. 06"
+                    height:dp(80)
+                    halign:'center'
+                    valign:'center'
+                    text_size: self.size
+                    background_color:.40,.8,.8,.7
+                    on_press:Factory.Info2().open()
+
+
+
+
+
+
+
+        GridLayout:
+            cols:5
+            size_hint:1, None
+            height:dp(55)
+            Button:
+                text:"B. 01"
+                background_color:.40,.59,.8,.7
+                size_hint:1, None
+                height:dp(55)
+                halign:'center'
+                valign:'center'
+                text_size: self.size
+                on_press: Factory.Info2().open()
+            Button:
+                text:"B. 02"
+                background_color:.40,.59,.8,.7
+                size_hint:1, None
+                height:dp(55)
+                halign:'center'
+                valign:'center'
+                text_size: self.size
+                on_press: Factory.Info2().open()
+            Button:
+                text:"B. 03"
+                background_color:.40,.59,.8,.7
+                size_hint:1, None
+                height:dp(55)
+                halign:'center'
+                valign:'center'
+                text_size: self.size
+                on_press: Factory.Info2().open()
+            Button:
+                text:"B. 04"
+                background_color:.40,.59,.8,.7
+                size_hint:1, None
+                height:dp(55)
+                halign:'center'
+                valign:'center'
+                text_size: self.size
+                on_press: Factory.Info2().open()
+            Button:
+                text:"B. 05"
+                background_color:.40,.59,.8,.7
+                size_hint:1, None
+                height:dp(55)
+                halign:'center'
+                valign:'center'
+                text_size: self.size
+                on_press: Factory.Info2().open()
+
