@@ -14,6 +14,7 @@ Window.softinput_mode = 'below_target' #PARA QUE O TECLADO N ESCONDA OS INPUT
 Window.clearcolor =[1,1,1,1] #ALTERA A COR DE FUNDO PARA BRANCO
 
 class AvisoDb(Popup):
+    #TODO INSERIR COMANDO PARA QUE O BOTAO SALVAR EXECUTE O COMANDO E MUDE DE TELA
     pass
 
 class DiarBord(Screen): #cria a classe dodiario de bordo
@@ -24,26 +25,21 @@ class DiarBord(Screen): #cria a classe dodiario de bordo
         self.dados[ord] = arg
     def verificardados(self):
         validador = 0
-        for dado in self.dados:
-            for leg in self.legenda:
-                print(dado)
-                print(leg)
-                print(validador)
-                #todo corrigir esca comparando um item com todos
-                if dado == leg:
-                    validador = validador + 1
+        i = 0
+        while i < len(self.legenda): # EQUANTO I É MELHOR QUE O TAMANHP DA LEGENDA FAZ
+            if self.legenda[i].find(self.dados[i]) == 0:
+                validador = validador + 1
+            i = i + 1
 
-        if validador > 0: #se houver erro nos dados avisar ao usuario
+
+        if validador > 1: #CASO HAJA ERRO NA COMPARAÇÃO DOS DADOS COM A LEJENDA, INFORMAR AO USUÁRIO
             popup = Popup(title='Aviso', content=Label(text='Dados Incompletos.\n Favor verificar'),
                           auto_dismiss=True, size_hint=(.5,.5))
             popup.open()
 
-        if validador == 0: #se não houver erro passar ao proximo passo
+        if validador == 1: #CASO NÃO HAJA ERRO NA COMPARAÇÃO
             return AvisoDb().open() #retorna POPUP criado no arquivo kv e declarado no corpo de main
-        '''
-        GerTela.current ='mp'
-        return GerTela().current
-        '''
+
     def salvar (self):
         #todo DEFINIR FUNCAO SALVAR
 
