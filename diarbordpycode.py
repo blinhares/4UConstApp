@@ -18,6 +18,32 @@ class AvisoDb(Popup):
     pass
 
 class DiarBord(Screen): #cria a classe dodiario de bordo
+
+    ########################################################################################################################################################################
+    #################### PERMITE QUE O BOTÃO VOLTAR DO ANDROID OU ESC SEJAM UTILIZADOS PARA A MUDANÇA DE TELAS #############################################################
+    ########################################################################################################################################################################
+    ###### USAR EVENDO DE ENTRADA ###
+    ##QUANDO O EVENTO OCORRER , CHAMAR A FUNC VOLTAR ###
+    def on_pre_enter(self, *args):
+        # DEFINIR EVENTO DE TECLADO
+        Window.bind(on_keyboard=self.voltar)
+
+    def voltar(sel, window, key, *args):
+        # SE A TECLA FOR esc ENTAO
+        if key == 27:
+            # RETORNA O APP QUE ESTA RODANDO
+            App.get_running_app().root.current = "mp"  # AQUI SE MUDA A JANELA QUE SE DESEJA
+        return True  # significa que tudo terminou bem
+
+    # DEFINIR COMANDO NA SAIDA
+    def on_pre_leave(self, *args):
+        Window.unbind(on_keyboard=self.voltar)
+
+    ########################################################################################################################################################################
+    #################### PERMITE QUE O BOTÃO VOLTAR DO ANDROID OU ESC SEJAM UTILIZADOS PARA A MUDANÇA DE TELAS #############################################################
+    ########################################################################################################################################################################
+
+
     legenda = ['Diario de Bordo', 'Tipo', 'Nome (Ex: Pedro)', 'Dia', 'Mes', 'Ano', 'Placa (Ex: ABC1234)', 'Hora Entrada', 'Minuto Entrada','Quilom. Entrada (Ex: 108432)', 'Hora Saida', 'Minuto Saida', 'Quilom. Saida (Ex: 108432)']
     dados = ['Diario de Bordo','Tipo','Nome','Dia','Mes','Ano','Placa','Hora Entrada','Minuto Entrada','Quilom. Entrada','Hora Saida','Minuto Saida','Quilom. Saida']
 
