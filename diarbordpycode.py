@@ -26,6 +26,10 @@ class DiarBord(Screen): #cria a classe dodiario de bordo
         validador = 0
         for dado in self.dados:
             for leg in self.legenda:
+                print(dado)
+                print(leg)
+                print(validador)
+                #todo corrigir esca comparando um item com todos
                 if dado == leg:
                     validador = validador + 1
 
