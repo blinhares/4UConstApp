@@ -67,6 +67,7 @@
                     text_size: self.size
                     background_color:.40,.59,.8,.7
                 TextInput:
+                    id:nomedb1
                     text:"Ex: Pedro"
                     size_hint:1, None
                     height:dp(50)
@@ -76,6 +77,7 @@
                     text_size: self.size
                     background_color:.40,.59,.8,.7
                     on_focus:
+                        root.vertexto("nomedb1","Ex: Pedro")
                         root.coletar(self.text,2) #var   #quando clicado salva o nome na variavel
                 Button:
                     text:"Insira a Data"
@@ -128,6 +130,7 @@
                     text_size: self.size
                     background_color:.40,.59,.8,.7
                 TextInput:
+                    id:placadb
                     text:"Ex: ABC1234"
                     size_hint:1, None
                     height:dp(50)
@@ -137,6 +140,7 @@
                     text_size: self.size
                     background_color:.40,.59,.8,.7
                     on_focus:
+                        root.vertexto("placadb","Ex: ABC1234")
                         root.coletar(self.text,6) #var   #quando clicado salva o nome na variavel
                 GridLayout:
                     cols:2
@@ -183,6 +187,7 @@
                         on_text:
                             root.coletar(self.text,8) #var   #quando clicado salva o nome na variavel
                     TextInput:
+                        id:kmentrdb
                         text:"Ex: 108432"
                         size_hint:.5, None
                         height:dp(50)
@@ -192,6 +197,7 @@
                         text_size: self.size
                         background_color:.40,.59,.8,.7
                         on_focus:
+                            root.vertexto("kmentrdb","Ex: 108432")
                             root.coletar(self.text,9) #var   #quando clicado salva o nome na variavel
 
                 GridLayout:
@@ -239,6 +245,7 @@
                         on_text:
                             root.coletar(self.text,11) #var   #quando clicado salva o nome na variavel
                     TextInput:
+                        id:kmsaidb
                         text:"Ex: 108432"
                         size_hint:.5, None
                         height:dp(50)
@@ -248,6 +255,7 @@
                         text_size: self.size
                         background_color:.40,.59,.8,.7
                         on_focus:
+                            root.vertexto("kmsaidb","Ex: 108432")
                             root.coletar(self.text,12) #var   #quando clicado salva o nome na variavel
 
                 GridLayout:

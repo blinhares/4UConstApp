@@ -18,11 +18,21 @@ class AvisoDb(Popup):
     pass
 
 class DiarBord(Screen): #cria a classe dodiario de bordo
-    legenda = ['Diario de Bordo', 'Tipo', 'Nome', 'Dia', 'Mes', 'Ano', 'Placa', 'Hora Entrada', 'Minuto Entrada','Quilom. Entrada', 'Hora Saida', 'Minuto Saida', 'Quilom. Saida']
+    legenda = ['Diario de Bordo', 'Tipo', 'Nome (Ex: Pedro)', 'Dia', 'Mes', 'Ano', 'Placa (Ex: ABC1234)', 'Hora Entrada', 'Minuto Entrada','Quilom. Entrada (Ex: 108432)', 'Hora Saida', 'Minuto Saida', 'Quilom. Saida (Ex: 108432)']
     dados = ['Diario de Bordo','Tipo','Nome','Dia','Mes','Ano','Placa','Hora Entrada','Minuto Entrada','Quilom. Entrada','Hora Saida','Minuto Saida','Quilom. Saida']
 
-    def coletar(self,arg,ord): #coleta dados das entradas
+#LIMPA O TEXTO ANTES DE DIGITAR E CASO N TENHA SIDO DIGITADO VOLTA AO TEXTO INICIAL
+    def vertexto(self,identif,text):
+        if self.ids[identif].text == "":
+            self.ids[identif].text = text
+        else:
+            if self.ids[identif].text == text:
+                self.ids[identif].text = ""
+
+#COLETA DOS DADOS
+    def coletar(self,arg,ord):
         self.dados[ord] = arg
+
     def verificardados(self):
         validador = 0
         i = 0
@@ -31,7 +41,7 @@ class DiarBord(Screen): #cria a classe dodiario de bordo
                 validador = validador + 1
             i = i + 1
 
-
+        print(validador)
         if validador > 1: #CASO HAJA ERRO NA COMPARAÇÃO DOS DADOS COM A LEJENDA, INFORMAR AO USUÁRIO
             popup = Popup(title='Aviso', content=Label(text='Dados Incompletos.\n Favor verificar'),
                           auto_dismiss=True, size_hint=(.5,.5))
