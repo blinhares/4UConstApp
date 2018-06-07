@@ -44,8 +44,8 @@ class DiarBord(Screen): #cria a classe dodiario de bordo
     ########################################################################################################################################################################
 
 
-    legenda = ['Diario de Bordo', 'Tipo', 'Nome (Ex: Pedro)', 'Dia', 'Mes', 'Ano', 'Placa (Ex: ABC1234)', 'Hora Entrada', 'Minuto Entrada','Quilom. Entrada (Ex: 108432)', 'Hora Saida', 'Minuto Saida', 'Quilom. Saida (Ex: 108432)']
-    dados = ['Diario de Bordo','Tipo','Nome','Dia','Mes','Ano','Placa','Hora Entrada','Minuto Entrada','Quilom. Entrada','Hora Saida','Minuto Saida','Quilom. Saida']
+    legenda = ['Diario de Bordo', 'Tipo', 'Nome (Ex: Pedro)', 'Dia', 'Mes', 'Ano', 'Placa (Ex: ABC1234)', 'Hora Entrada', 'Minuto Entrada','Quilom. Entrada (Ex: 108423)', 'Hora Saida', 'Minuto Saida', 'Quilom. Saida (Ex: 108432)','Obs(Ex: Pneu Furado)']
+    dados = ['Diario de Bordo','Tipo','Nome','Dia','Mes','Ano','Placa','Hora Entrada','Minuto Entrada','Quilom. Entrada','Hora Saida','Minuto Saida','Quilom. Saida','Obs']
 
 #LIMPA O TEXTO ANTES DE DIGITAR E CASO N TENHA SIDO DIGITADO VOLTA AO TEXTO INICIAL
     def vertexto(self,identif,text):
@@ -59,13 +59,16 @@ class DiarBord(Screen): #cria a classe dodiario de bordo
     def coletar(self,arg,ord):
         self.dados[ord] = arg
 
+
     def verificardados(self):
         validador = 0
         i = 0
         while i < len(self.legenda): # EQUANTO I É MELHOR QUE O TAMANHP DA LEGENDA FAZ
             if self.legenda[i].find(self.dados[i]) == 0:
                 validador = validador + 1
+
             i = i + 1
+            #todo verificar erro! se inserir um dado e clicar em salvar ele n recebe o dado
 
         print(validador)
         if validador > 1: #CASO HAJA ERRO NA COMPARAÇÃO DOS DADOS COM A LEJENDA, INFORMAR AO USUÁRIO
