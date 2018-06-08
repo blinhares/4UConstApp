@@ -27,7 +27,7 @@
             halign:'center'
             valign:'center'
             text_size: self.size
-            background_color:.40,.59,.8,.7
+            background_color:.40,.8,.8,.75
 
         ScrollView:
             size_hint:1, 1
@@ -43,7 +43,7 @@
                     halign:'center'
                     valign:'center'
                     text_size: self.size
-                    background_color:.40,.59,.8,.7
+                    background_color:.40,.8,.8,.65
                 Spinner:
                     id:db0
                     text:"Escolha Uma Obra"
@@ -62,7 +62,7 @@
                     halign:'center'
                     valign:'center'
                     text_size: self.size
-                    background_color:.40,.59,.8,.7
+                    background_color:.40,.8,.8,.65
                 Spinner:
                     id:db1
                     text:"Escolha uma Altenativa"
@@ -82,7 +82,7 @@
                     halign:'center'
                     valign:'center'
                     text_size: self.size
-                    background_color:.40,.59,.8,.7
+                    background_color:.40,.8,.8,.65
                 TextInput:
                     id:db2
                     text:"Ex: Pedro"
@@ -92,7 +92,7 @@
                     halign:'center'
                     valign:'center'
                     text_size: self.size
-                    background_color:.40,.59,.8,.7
+                    background_color:.40,.8,.8,.65
                     on_focus:
                         root.vertexto("db2","Ex: Pedro")
                 Button:
@@ -102,7 +102,7 @@
                     halign:'center'
                     valign:'center'
                     text_size: self.size
-                    background_color:.40,.59,.8,.7
+                    background_color:.40,.8,.8,.65
                 GridLayout:
                     cols:3
                     size_hint:1, None
@@ -144,7 +144,7 @@
                     halign:'center'
                     valign:'center'
                     text_size: self.size
-                    background_color:.40,.59,.8,.7
+                    background_color:.40,.8,.8,.65
                 TextInput:
                     id:db6
                     text:"Ex: ABC1234"
@@ -154,7 +154,7 @@
                     halign:'center'
                     valign:'center'
                     text_size: self.size
-                    background_color:.40,.59,.8,.7
+                    background_color:.40,.8,.8,.65
                     on_focus:
                         root.vertexto("db6","Ex: ABC1234")
                 GridLayout:
@@ -168,7 +168,7 @@
                         halign:'center'
                         valign:'center'
                         text_size: self.size
-                        background_color:.40,.59,.8,.7
+                        background_color:.40,.8,.8,.65
                     Button:
                         text:"Quilometragem de Entrada"
                         size_hint:1, None
@@ -176,7 +176,7 @@
                         halign:'center'
                         valign:'center'
                         text_size: self.size
-                        background_color:.40,.59,.8,.7
+                        background_color:.40,.8,.8,.65
                 GridLayout:
                     cols:3
                     size_hint:1, None
@@ -210,7 +210,7 @@
                         halign:'center'
                         valign:'center'
                         text_size: self.size
-                        background_color:.40,.59,.8,.7
+                        background_color:.40,.8,.8,.65
                         on_focus:
                             root.vertexto("db9","Ex: 108423")
 
@@ -225,7 +225,7 @@
                         halign:'center'
                         valign:'center'
                         text_size: self.size
-                        background_color:.40,.59,.8,.7
+                        background_color:.40,.8,.8,.65
                     Button:
                         text:"Quilometragem de Saida"
                         size_hint:1, None
@@ -233,7 +233,7 @@
                         halign:'center'
                         valign:'center'
                         text_size: self.size
-                        background_color:.40,.59,.8,.7
+                        background_color:.40,.8,.8,.65
                 GridLayout:
                     cols:3
                     size_hint:1, None
@@ -267,7 +267,7 @@
                         halign:'center'
                         valign:'center'
                         text_size: self.size
-                        background_color:.40,.59,.8,.7
+                        background_color:.40,.8,.8,.65
                         on_focus:
                             root.vertexto("db12","Ex: 108432")
 
@@ -278,7 +278,7 @@
                     halign:'center'
                     valign:'center'
                     text_size: self.size
-                    background_color:.40,.59,.8,.7
+                    background_color:.40,.8,.8,.65
                 TextInput:
                     id:db13
                     text:"Ex: Pneu Furado"
@@ -288,7 +288,7 @@
                     halign:'center'
                     valign:'center'
                     text_size: self.size
-                    background_color:.40,.59,.8,.7
+                    background_color:.40,.8,.8,.65
                     on_focus:
                         root.vertexto("db13","Ex: Pneu Furado")
 
@@ -296,6 +296,7 @@
             cols:2
             size_hint:1, None
             height:dp(50)
+            background_color:.40,.8,.8,.75
             Button:
                 text:"Cancelar"
                 size_hint:1, None
@@ -303,7 +304,7 @@
                 halign:'center'
                 valign:'center'
                 text_size: self.size
-                background_color:.40,.59,.8,.7
+                background_color:.40,.8,.8,.75
                 on_press:
                     root.manager.current = "mp" #acessa ogerenciador de telas e muda
             Button:
@@ -313,9 +314,10 @@
                 halign:'center'
                 valign:'center'
                 text_size: self.size
-                background_color:.40,.59,.8,.7
+                background_color:.40,.8,.8,.75
                 on_press:
                     #root.verificardados()
+                    on_press: Factory.AvisoDb().open()
 
                     #todo implementar o salvamento dos dados
 
@@ -356,4 +358,6 @@
                 valign:'center'
                 text_size: self.size
                 on_press:
+
+                    root.dismiss()
                     #todo implementar função salvar
