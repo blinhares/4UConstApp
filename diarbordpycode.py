@@ -13,12 +13,10 @@ from kivy.factory import Factory
 Window.softinput_mode = 'below_target' #PARA QUE O TECLADO N ESCONDA OS INPUT
 Window.clearcolor =[1,1,1,1] #ALTERA A COR DE FUNDO PARA BRANCO
 
-class AvisoDb(Popup):
-    pass
-    #TODO INSERIR COMANDO PARA QUE O BOTAO SALVAR EXECUTE O COMANDO E MUDE DE TELA
-
+#todo implementar aviso <AvisoDb@Popup>:
 
 class DiarBord(Screen): #cria a classe dodiario de bordo
+
 
 ########################################################################################################################################################################
 #################### PERMITE QUE O BOTÃO VOLTAR DO ANDROID OU ESC SEJAM UTILIZADOS PARA A MUDANÇA DE TELAS #############################################################
@@ -45,7 +43,7 @@ class DiarBord(Screen): #cria a classe dodiario de bordo
 ########################################################################################################################################################################
 
 
-    legenda = ['Diario de Bordo','Obra', 'Tipo', 'Nome (Ex: Pedro)', 'Dia', 'Mes', 'Ano', 'Placa (Ex: ABC1234)', 'Hora Entrada', 'Minuto Entrada','Quilom. Entrada (Ex: 108423)', 'Hora Saida', 'Minuto Saida', 'Quilom. Saida (Ex: 108432)','Obs(Ex: Pneu Furado)']
+    legenda = ['Formulario','Obra', 'Tipo', 'Nome (Ex: Pedro)', 'Dia', 'Mes', 'Ano', 'Placa (Ex: ABC1234)', 'Hora Entrada', 'Minuto Entrada','Quilom. Entrada (Ex: 108423)', 'Hora Saida', 'Minuto Saida', 'Quilom. Saida (Ex: 108432)','Obs(Ex: Pneu Furado)']
     dadospadr = ['Diario de Bordo', 'Escolha Uma Obra', 'Escolha uma Altenativa', 'Ex: Pedro', 'Escolha o dia', 'Escolha o Mes', 'Escolha o Ano', 'Ex: ABC1234', 'Insira a Hora', 'Insira os Minutos', 'Ex: 108423', 'Insira a Hora', 'Insira os Minutos', 'Ex: 108432', 'Ex: Pneu Furado']
     dados = ['Diario de Bordo','Obra','Tipo','Ex: Pedro','Dia','Mes','Ano','Ex: ABC1234','Hora Entrada','Minuto Entrada','Quilom. Entrada','Hora Saida','Minuto Saida','Quilom. Saida','Obs']
 
@@ -64,7 +62,10 @@ class DiarBord(Screen): #cria a classe dodiario de bordo
         self.dados = []  # limpa a lista de dados
         for ident in self.ids:
             self.dados.append(self.ids[ident].text)
+
         #########  RECEBE OS DADOS  ######
+
+
 
         ###### CASO N SEJA COLOCADO OBSERVAÇÃO ZERAR O VALOR ######
         if self.dadospadr[len(self.dadospadr) - 1] == self.dados[len(self.dadospadr) - 1]:
@@ -85,9 +86,33 @@ class DiarBord(Screen): #cria a classe dodiario de bordo
 
         ##### CASO NÃO HAJA ERRO NA COMPARAÇÃO ######
         if validador == 1:
-            pass
 
-        #todo verificar aviso de dalvamento
+
+            ###SALVA EM ARQUIVO####
+
+            grav = open('dadosdb.csv', 'a+')
+            ler = open('dadosdb.csv', 'r')
+
+            i = 0
+            for linha in ler:
+                i = 1
+                if i == 1:
+                    break
+            if i == 0:
+                # adicionar legenda
+                for palavra in self.legenda:
+                    grav.write(palavra + ":")
+                grav.write("\n")
+            ## GRAVAR DADOS NO ARQUIVIO ####
+            for palavra in self.dados:
+                grav.write(palavra + ":")
+            grav.write("\n")
+
+            ler.close()
+            grav.close()
+
+            ###SALVA EM ARQUIVO####
+
 
 
 

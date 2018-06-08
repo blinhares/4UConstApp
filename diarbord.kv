@@ -316,10 +316,8 @@
                 text_size: self.size
                 background_color:.40,.8,.8,.75
                 on_press:
-                    #root.verificardados()
-                    on_press: Factory.AvisoDb().open()
+                    root.verificardados()
 
-                    #todo implementar o salvamento dos dados
 
 
 
@@ -358,6 +356,6 @@
                 valign:'center'
                 text_size: self.size
                 on_press:
-
+                    root.testi()
                     root.dismiss()
                     #todo implementar função salvar
