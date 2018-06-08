@@ -113,6 +113,10 @@ class DiarBord(Screen): #cria a classe dodiario de bordo
 
             ###SALVA EM ARQUIVO####
 
+            popup = Popup(title='Aviso', content=Label(text='Dados Salvos com Sucesso'),
+                          auto_dismiss=True, size_hint=(.5, .5))
+            popup.open()
+
 
 
 
