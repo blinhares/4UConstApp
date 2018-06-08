@@ -19,11 +19,11 @@ class AvisoDb(Popup):
 
 class DiarBord(Screen): #cria a classe dodiario de bordo
 
-    ########################################################################################################################################################################
-    #################### PERMITE QUE O BOTÃO VOLTAR DO ANDROID OU ESC SEJAM UTILIZADOS PARA A MUDANÇA DE TELAS #############################################################
-    ########################################################################################################################################################################
-    ###### USAR EVENDO DE ENTRADA ###
-    ##QUANDO O EVENTO OCORRER , CHAMAR A FUNC VOLTAR ###
+########################################################################################################################################################################
+#################### PERMITE QUE O BOTÃO VOLTAR DO ANDROID OU ESC SEJAM UTILIZADOS PARA A MUDANÇA DE TELAS #############################################################
+########################################################################################################################################################################
+###### USAR EVENDO DE ENTRADA ###
+##QUANDO O EVENTO OCORRER , CHAMAR A FUNC VOLTAR ###
     def on_pre_enter(self, *args):
         # DEFINIR EVENTO DE TECLADO
         Window.bind(on_keyboard=self.voltar)
@@ -39,13 +39,14 @@ class DiarBord(Screen): #cria a classe dodiario de bordo
     def on_pre_leave(self, *args):
         Window.unbind(on_keyboard=self.voltar)
 
-    ########################################################################################################################################################################
-    #################### PERMITE QUE O BOTÃO VOLTAR DO ANDROID OU ESC SEJAM UTILIZADOS PARA A MUDANÇA DE TELAS #############################################################
-    ########################################################################################################################################################################
+########################################################################################################################################################################
+#################### PERMITE QUE O BOTÃO VOLTAR DO ANDROID OU ESC SEJAM UTILIZADOS PARA A MUDANÇA DE TELAS #############################################################
+########################################################################################################################################################################
 
 
-    legenda = ['Diario de Bordo', 'Tipo', 'Nome (Ex: Pedro)', 'Dia', 'Mes', 'Ano', 'Placa (Ex: ABC1234)', 'Hora Entrada', 'Minuto Entrada','Quilom. Entrada (Ex: 108423)', 'Hora Saida', 'Minuto Saida', 'Quilom. Saida (Ex: 108432)','Obs(Ex: Pneu Furado)']
-    dados = ['Diario de Bordo','Tipo','Nome','Dia','Mes','Ano','Placa','Hora Entrada','Minuto Entrada','Quilom. Entrada','Hora Saida','Minuto Saida','Quilom. Saida','Obs']
+    legenda = ['Diario de Bordo','Obra', 'Tipo', 'Nome (Ex: Pedro)', 'Dia', 'Mes', 'Ano', 'Placa (Ex: ABC1234)', 'Hora Entrada', 'Minuto Entrada','Quilom. Entrada (Ex: 108423)', 'Hora Saida', 'Minuto Saida', 'Quilom. Saida (Ex: 108432)','Obs(Ex: Pneu Furado)']
+    dadospadr = ['Diario de Bordo', 'Escolha Uma Obra', 'Escolha uma Altenativa', 'Ex: Pedro', 'Escolha o dia', 'Escolha o Mes', 'Escolha o Ano', 'Ex: ABC1234', 'Insira a Hora', 'Insira os Minutos', 'Ex: 108423', 'Insira a Hora', 'Insira os Minutos', 'Ex: 108432', 'Ex: Pneu Furado']
+    dados = ['Diario de Bordo','Obra','Tipo','Ex: Pedro','Dia','Mes','Ano','Ex: ABC1234','Hora Entrada','Minuto Entrada','Quilom. Entrada','Hora Saida','Minuto Saida','Quilom. Saida','Obs']
 
 #LIMPA O TEXTO ANTES DE DIGITAR E CASO N TENHA SIDO DIGITADO VOLTA AO TEXTO INICIAL
     def vertexto(self,identif,text):
@@ -55,37 +56,42 @@ class DiarBord(Screen): #cria a classe dodiario de bordo
             if self.ids[identif].text == text:
                 self.ids[identif].text = ""
 
-#COLETA DOS DADOS
-    def coletar(self,arg,ord):
-        self.dados[ord] = arg
 
 
     def verificardados(self):
+        #########  RECEBE OS DADOS  ######
+        self.dados = []  # limpa a lista de dados
+        for ident in self.ids:
+            self.dados.append(self.ids[ident].text)
+        #########  RECEBE OS DADOS  ######
+
+        ###### CASO N SEJA COLOCADO OBSERVAÇÃO ZERAR O VALOR ######
+        if self.dadospadr[len(self.dadospadr) - 1] == self.dados[len(self.dadospadr) - 1]:
+            self.dados[len(self.dadospadr) - 1] = "-"
+
         validador = 0
         i = 0
-        while i < len(self.legenda): # EQUANTO I É MELHOR QUE O TAMANHP DA LEGENDA FAZ
-            if self.legenda[i].find(self.dados[i]) == 0:
+        while i < (len(self.dadospadr)-1): # EQUANTO I É MELHOR QUE O TAMANHP DA LEGENDA FAZ
+            if self.dadospadr[i].find(self.dados[i]) == 0:
                 validador = validador + 1
 
             i = i + 1
-            #todo verificar erro! se inserir um dado e clicar em salvar ele n recebe o dado
-
-        print(validador)
-        if validador > 1: #CASO HAJA ERRO NA COMPARAÇÃO DOS DADOS COM A LEJENDA, INFORMAR AO USUÁRIO
+        ########## CASO HAJA ERRO NA COMPARAÇÃO DOS DADOS COM A LEJENDA, INFORMAR AO USUÁRIO ############
+        if validador > 1:
             popup = Popup(title='Aviso', content=Label(text='Dados Incompletos.\n Favor verificar'),
                           auto_dismiss=True, size_hint=(.5,.5))
             popup.open()
 
-        if validador == 1: #CASO NÃO HAJA ERRO NA COMPARAÇÃO
-            return AvisoDb().open() #retorna POPUP criado no arquivo kv e declarado no corpo de main
+        ##### CASO NÃO HAJA ERRO NA COMPARAÇÃO ######
+        if validador == 1:
+            pass
 
-    def salvar (self):
-        #todo DEFINIR FUNCAO SALVAR
+        #todo verificar aviso de dalvamento
 
-        pass
 
 
 '''
+
 #############         COMANDO DESTINADO AO TESTE DA PAGINA     ###########################################
 ##########################################################################################################
 class DiarBordApp(App):
