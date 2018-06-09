@@ -1,4 +1,5 @@
 import kivy
+import plyer
 from kivy.app import App
 from kivy.uix.popup import Popup
 from kivy.uix.boxlayout import BoxLayout
@@ -10,6 +11,7 @@ from kivy.core.window import Window
 from kivy.factory import Factory
 from plyer import email
 
+
 Window.softinput_mode = 'below_target' #PARA QUE O TECLADO N ESCONDA OS INPUT
 Window.clearcolor =[1,1,1,1] #ALTERA A COR DE FUNDO PARA BRANCO
 
@@ -18,25 +20,7 @@ import diarbordpycode #IMPORTAR CODIGO PARA DIARIO DE BORDO
 
 
 class MenuP(Screen): #cria a classe do Menu Principal
-    #Enviar dados por email
-    def enviardados(self):
-        try:
-            with open('dadosdb.csv', 'r') as f:
-                destinatario = "brunobarbosa@quatrou.com.br"
-                assunto = "Diario de Bordo"
-                corpodoemail = ""
-                for linha in f:
-                    print(linha)
-                    corpodoemail = corpodoemail + linha
-                print(corpodoemail)
-                limparquivo = open('dadosdb.csv', 'w')
-                email.send(recipient=destinatario,
-                   subject=assunto,
-                   text=corpodoemail)
-        except IOError:
-            popup = Popup(title='Aviso', content=Label(text='Nao ha dados para enviar'),
-                          auto_dismiss=True, size_hint=(.5, .5))
-            popup.open()
+    pass
 
 class AvisoDb(Popup):
     pass

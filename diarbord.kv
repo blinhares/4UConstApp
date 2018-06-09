@@ -94,7 +94,7 @@
                     text_size: self.size
                     background_color:.40,.8,.8,.65
                     on_focus:
-                        root.vertexto("db2","Ex: Pedro")
+                        root.dbverificartexto("db2","Ex: Pedro")
                 Button:
                     text:"Insira a Data"
                     size_hint:1, None
@@ -156,7 +156,7 @@
                     text_size: self.size
                     background_color:.40,.8,.8,.65
                     on_focus:
-                        root.vertexto("db6","Ex: ABC1234")
+                        root.dbverificartexto("db6","Ex: ABC1234")
                 GridLayout:
                     cols:2
                     size_hint:1, None
@@ -212,7 +212,7 @@
                         text_size: self.size
                         background_color:.40,.8,.8,.65
                         on_focus:
-                            root.vertexto("db9","Ex: 108423")
+                            root.dbverificartexto("db9","Ex: 108423")
 
                 GridLayout:
                     cols:2
@@ -269,7 +269,7 @@
                         text_size: self.size
                         background_color:.40,.8,.8,.65
                         on_focus:
-                            root.vertexto("db12","Ex: 108432")
+                            root.dbverificartexto("db12","Ex: 108432")
 
                 Button:
                     text:"Observacoes"
@@ -290,7 +290,7 @@
                     text_size: self.size
                     background_color:.40,.8,.8,.65
                     on_focus:
-                        root.vertexto("db13","Ex: Pneu Furado")
+                        root.dbverificartexto("db13","Ex: Pneu Furado")
 
         GridLayout:
             cols:2
@@ -316,7 +316,7 @@
                 text_size: self.size
                 background_color:.40,.8,.8,.75
                 on_press:
-                    root.verificardados()
+                    root.dbcoletardados()
 
 
 
@@ -356,6 +356,5 @@
                 valign:'center'
                 text_size: self.size
                 on_press:
-                    root.testi()
                     root.dismiss()
                     #todo implementar função salvar
