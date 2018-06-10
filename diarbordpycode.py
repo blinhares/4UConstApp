@@ -15,22 +15,21 @@ Window.softinput_mode = 'below_target' #PARA QUE O TECLADO N ESCONDA OS INPUT
 Window.clearcolor =[1,1,1,1] #ALTERA A COR DE FUNDO PARA BRANCO
 class AvisoDb(Popup):
     pass
-
-class DiarBord(Screen): #cria a classe do diario de bordo
-
-
+#cria a classe do diario de bordo
+class DiarBord(Screen):
     def on_pre_enter(self, *args):
-        # DEFINIR EVENTO DE TECLADO
+        #DEFINIR EVENTO DE TECLADO
         Window.bind(on_keyboard=self.voltar)
 
     def voltar(sel, window, key, *args):
-        # SE A TECLA FOR esc ENTAO
+        #SE A TECLA FOR esc ENTAO
         if key == 27:
-            # RETORNA O APP QUE ESTA RODANDO
+            #RETORNA O APP QUE ESTA RODANDO
             App.get_running_app().root.current = "mp"  # AQUI SE MUDA A JANELA QUE SE DESEJA
-        return True  # significa que tudo terminou bem
+        return True
+        #significa que tudo terminou bem
 
-    # DEFINIR COMANDO NA SAIDA
+    #DEFINIR COMANDO NA SAIDA
     def on_pre_leave(self, *args):
         Window.unbind(on_keyboard=self.voltar)
 
@@ -38,8 +37,8 @@ class DiarBord(Screen): #cria a classe do diario de bordo
     dadospadr = ['Diario de Bordo', 'Escolha Uma Obra', 'Escolha uma Altenativa', 'Ex: Pedro', 'Escolha o dia', 'Escolha o Mes', 'Escolha o Ano', 'Ex: ABC1234', 'Insira a Hora', 'Insira os Minutos', 'Ex: 108423', 'Insira a Hora', 'Insira os Minutos', 'Ex: 108432', 'Ex: Pneu Furado']
     dados = ['Diario de Bordo','','','','','','','','','','','','','','']
 
-#LIMPA O TEXTO ANTES DE DIGITAR E CASO N TENHA SIDO DIGITADO VOLTA AO TEXTO INICIAL
-    def dbverificartexto(self, identif, textopadrao):
+    #LIMPA O TEXTO ANTES DE DIGITAR E CASO N TENHA SIDO DIGITADO VOLTA AO TEXTO INICIAL
+    def dbverificartexto(self,identif,textopadrao):
         if self.ids[identif].text == "":
             self.ids[identif].text = textopadrao
         else:
@@ -49,31 +48,39 @@ class DiarBord(Screen): #cria a classe do diario de bordo
     def dbcoletardados(self):
         i = 0
         aux = 0
-        while i < 14 : #numero de ids a ser coletados
+        #numero de ids a ser coletados
+        while i < 14:
             self.dados[i + 1] = self.ids["db" + str(i)].text
-            if self.dados[i + 1].find(self.dadospadr[i + 1]) >= 0 :
+            if self.dados[i + 1].find(self.dadospadr[i + 1]) >= 0:
                 aux = aux + 1
             i = i + 1
         aux = aux - 1
         if aux > 0:
             popup = Popup(title='Aviso', content=Label(text='Dados Incompletos.\nVafor preencher todos os campos.'),
-                          auto_dismiss=True, size_hint=(.5, .5))
+                          auto_dismiss=True, size_hint=(1, .5))
             popup.open()
         else:
-            corpo = ""
-            for leg in self.legenda:
-                corpo = corpo + leg + ":"
-            corpo = corpo + "\n"
-            for dado in self.dados:
-                corpo = corpo + dado + ":"
-            corpo = corpo + "\n"
-            email.send(recipient="brunobarbosa@quatrou.com.br",
+            self.reesta_padr()
+            self.enviar_email()
+    def enviar_email(self):
+        corpo = ""
+        for leg in self.legenda:
+            corpo = corpo + leg + ":"
+        corpo = corpo + "\n"
+        for dado in self.dados:
+            corpo = corpo + dado + ":"
+        corpo = corpo + "\n"
+        email.send(recipient="brunobarbosa@quatrou.com.br",
                    subject="Diario de Bordo",
                    text=corpo,
                    create_chooser=False)
-            pass
 
-
+    def reesta_padr(self):
+        i = 0
+        # numero de ids a ser coletados
+        while i < 14:
+            self.ids["db" + str(i)].text = self.dadospadr[i + 1]
+            i = i + 1
 
 '''#############         COMANDO DESTINADO AO TESTE DA PAGINA     ###########################################
 ##########################################################################################################
