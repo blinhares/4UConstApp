@@ -24,6 +24,15 @@ class MenuP(Screen):
     pass
 
 class DiarBord(Screen):
+    def on_pre_enter(self, *args):
+        Window.bind(on_keyboard=self.voltar)
+    def voltar (sel,window, key,*args):
+        #SE A TECLA FOR esc ENTAO
+        if key == 27:
+            App.get_running_app().root.current = "mp"
+        return True
+    def on_pre_leave(self, *args):
+        Window.unbind(on_keyboard=self.voltar)
     def ver_entr(self,idn,texpadr):
         if self.ids[idn].text == texpadr:
             self.ids[idn].text = ""
