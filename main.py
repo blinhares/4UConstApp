@@ -82,9 +82,7 @@ class DiarBord(Screen):
         #CRIA ID DE SALVAMENTO#
         idsalv = '#DB#' + dados['Dia'] + dados['Mes'] + dados['Hora']
         store[idsalv]=dados
-        for key in store:
-            print(key)
-        print(len(store))
+        
     def limp_dados(self):
         i = 1
         contador = 0
