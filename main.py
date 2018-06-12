@@ -6,8 +6,11 @@ from kivy.uix.scrollview import ScrollView
 from kivy.uix.screenmanager import ScreenManager, Screen #para funcionar o gerenciamento de telas
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.anchorlayout import AnchorLayout
+from kivy.uix.button import Button
+from kivy.uix.spinner import Spinner
 from kivy.uix.label import Label
 from kivy.core.window import Window
+from kivy.storage.jsonstore import JsonStore
 from kivy.factory import Factory
 from plyer import email
 
@@ -40,6 +43,8 @@ class DiarBord(Screen):
             if self.ids[idn].text == "":
                 self.ids[idn].text = texpadr
 
+    legenda = ['Obra', 'Equipe', 'Dia', 'Mes', 'Ano',
+               'Hora', 'Minutos', 'Nome', 'Placa', 'Obs']
     dadopadrao = ['Escolha Uma Obra', 'Escolha Uma Equipe', 'Escolha o dia', 'Escolha o Mes', 'Escolha o Ano',
                   'Insira a Hora', 'Insira os Minutos', 'Ex: Pedro', 'Ex: ABC1423', 'Ex: Deslocamento a Torre 05']
     def verificar(self):
@@ -61,9 +66,25 @@ class DiarBord(Screen):
                           auto_dismiss=True, size_hint=(1, .5))
             popup.open()
         else:
-            self.env_email()
+            self.salvar_dados()
             self.limp_dados()
 
+    def salvar_dados(self):
+        store = JsonStore('4u.json')
+        dados = {}
+        i = 0
+        while i < len(self.legenda):
+            if self.dadopadrao[i].find(self.ids['db' + str(i + 1)].text) >= 0:
+                dados[self.legenda[i]] = '-'
+            else:
+                dados[self.legenda[i]] = self.ids['db' + str(i + 1)].text
+            i = i + 1
+        #CRIA ID DE SALVAMENTO#
+        idsalv = '#DB#' + dados['Dia'] + dados['Mes'] + dados['Hora']
+        store[idsalv]=dados
+        for key in store:
+            print(key)
+        print(len(store))
     def limp_dados(self):
         i = 1
         contador = 0

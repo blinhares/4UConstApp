@@ -186,11 +186,11 @@
                         on_focus:
                             root.ver_entr('db10','Ex: Deslocamento a Torre 05')
         GridLayout:
-            cols:2
+            cols:3
             size_hint:1, None
             height:dp(40)
             AnchorLayout:
-                size_hint:.5, None
+                size_hint:1, None
                 height:dp(40)
                 width:dp(55)
                 Image:
@@ -204,11 +204,24 @@
                     on_press:
                         root.manager.current = 'mp'
             AnchorLayout:
-                size_hint:.5, None
+                size_hint:1, None
                 height:dp(40)
                 width:dp(55)
                 Image:
                     source: 'img/send.png'
+                    size_hint:1, None
+                    height:dp(40)
+                Button:
+                    size_hint:None, None
+                    width:dp(40)
+                    opacity:0
+
+            AnchorLayout:
+                size_hint:1, None
+                height:dp(40)
+                width:dp(55)
+                Image:
+                    source: 'img/save.png'
                     size_hint:1, None
                     height:dp(40)
                 Button:
