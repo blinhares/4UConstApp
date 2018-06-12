@@ -82,7 +82,9 @@ class DiarBord(Screen):
         #CRIA ID DE SALVAMENTO#
         idsalv = '#DB#' + dados['Dia'] + dados['Mes'] + dados['Hora']
         store[idsalv]=dados
-        
+        popup = Popup(title='Aviso', content=Label(text='Dados Salvos'),
+                      auto_dismiss=True, size_hint=(1, .5))
+        popup.open()
     def limp_dados(self):
         i = 1
         contador = 0
@@ -102,7 +104,6 @@ class DiarBord(Screen):
         print(corpemail)
         email.send(recipient="brunobarbosa@quatrou.com.br",
                    subject="#DIARIO_DE_BORDO#",text=corpemail,create_chooser=False)
-
 
 class MenuApp(App):
     def build(self):
