@@ -51,8 +51,11 @@
                     opacity:0
                     on_press:
                         Factory.Info().open()
-        Button:
+        Label:
             text:'Menu Principal'
+            color:0,0,0,1
+            font_name:'RbConReg'
+            font_size:sp(24)
             size_hint:1,None
             height:dp(40)
         ScrollView:
@@ -62,6 +65,8 @@
                 height:dp(55)
                 Button:
                     text:'Diario de Bordo'
+                    font_size:sp(20)
+                    font_name:'RbConReg'
                     size_hint:1, None
                     height:dp(55)
                     on_press:

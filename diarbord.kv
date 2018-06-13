@@ -21,16 +21,22 @@
                 size_hint:1, None
                 height:dp(440)
                 orientation:'vertical'
-                Button:
+                Label:
+                    font_size:sp(24)
+                    color:0,0,0,1
                     text:'Diario de Bordo'
+                    font_name:'RbConReg'
                     size_hint:1, None
                     height:dp(40)
                 GridLayout:
                     cols:2
                     size_hint:1, None
                     height:dp(80)
-                    Button:
+                    Label:
                         text:"Obra:"
+                        font_size:sp(20)
+                        font_name:'RbConReg'
+                        color:0,0,0,1
                         size_hint:.2, None
                         height:dp(40)
                         halign:'center'
@@ -38,6 +44,8 @@
                     Spinner:
                         id:db1
                         text:"Escolha Uma Obra"
+                        font_size:sp(20)
+                        font_name:'RbConReg'
                         halign:'center'
                         valign:'center'
                         text_size:self.size
@@ -45,8 +53,11 @@
                         size_hint:.8, None
                         height:dp(40)
                         values:'LDB - Lagoa do Barro', 'Outra'
-                    Button:
+                    Label:
                         text:"Equipe:"
+                        font_name:'RbConReg'
+                        font_size:sp(20)
+                        color:0,0,0,1
                         size_hint:.2, None
                         height:dp(40)
                         halign:'center'
@@ -54,6 +65,8 @@
                     Spinner:
                         id:db2
                         text:"Escolha Uma Equipe"
+                        font_size:sp(20)
+                        font_name:'RbConReg'
                         halign:'center'
                         valign:'center'
                         text_size:self.size
@@ -62,8 +75,11 @@
                         height:dp(40)
                         values:'Montagem', 'Guindastes', 'Transportes','Eletromecanica', 'Adm.'
 
-                Button:
-                    text:"Insira a Data"
+                Label:
+                    text:"Data"
+                    font_name:'RbConReg'
+                    font_size:sp(20)
+                    color:0,0,0,1
                     size_hint:1, None
                     height:dp(40)
                     halign:'center'
@@ -75,7 +91,9 @@
                     height:dp(80)
                     Spinner:
                         id:db3
-                        text:"Escolha o dia"
+                        text:"Dia"
+                        font_name:'RbConReg'
+                        font_size:sp(20)
                         text_size:self.size
                         halign:'center'
                         valign:'center'
@@ -84,7 +102,9 @@
                         values:'1', '2', '3','4', '5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'
                     Spinner:
                         id:db4
-                        text:"Escolha o Mes"
+                        text:"Mes"
+                        font_name:'RbConReg'
+                        font_size:sp(20)
                         text_size:self.size
                         halign:'center'
                         valign:'center'
@@ -93,15 +113,20 @@
                         values:'Janeiro', 'Fevereiro', 'Marco','Abril', 'Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'
                     Spinner:
                         id:db5
-                        text:"Escolha o Ano"
+                        text:"Ano"
+                        font_name:'RbConReg'
+                        font_size:sp(20)
                         text_size:self.size
                         halign:'center'
                         valign:'center'
                         size_hint:1, None
                         height:dp(40)
                         values:'2018', '2019', '2020'
-                    Button:
+                    Label:
                         text:"Insira a Hora:"
+                        font_name:'RbConReg'
+                        font_size:sp(20)
+                        color:0,0,0,1
                         size_hint:1, None
                         height:dp(40)
                         halign:'center'
@@ -109,7 +134,9 @@
                         text_size: self.size
                     Spinner:
                         id:db6
-                        text:"Insira a Hora"
+                        text:"Hora"
+                        font_size:sp(20)
+                        font_name:'RbConReg'
                         text_size:self.size
                         halign:'center'
                         valign:'center'
@@ -118,7 +145,9 @@
                         values:'05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','00','01','02','03','04'
                     Spinner:
                         id:db7
-                        text:"Insira os Minutos"
+                        text:"Minutos"
+                        font_size:sp(20)
+                        font_name:'RbConReg'
                         text_size:self.size
                         halign:'center'
                         valign:'center'
@@ -129,15 +158,21 @@
                     cols:2
                     size_hint:1, None
                     height:dp(80)
-                    Button:
+                    Label:
                         text:"Responsavel:"
+                        font_name:'RbConReg'
+                        font_size:sp(20)
+                        color:0,0,0,1
                         size_hint:1, None
                         height:dp(40)
                         halign:'center'
                         valign:'center'
                         text_size: self.size
-                    Button:
+                    Label:
+                        color:0,0,0,1
                         text:"Placa do Carro:"
+                        font_name:'RbConReg'
+                        font_size:sp(20)
                         size_hint:1, None
                         height:dp(40)
                         halign:'center'
@@ -146,6 +181,8 @@
                     TextInput:
                         id:db8
                         text:'Ex: Pedro'
+                        font_name:'RbConReg'
+                        font_size:sp(20)
                         size_hint:.5, None
                         height:sp(40)
                         multiline:False
@@ -157,6 +194,8 @@
                     TextInput:
                         id:db9
                         text:'Ex: ABC1423'
+                        font_name:'RbConReg'
+                        font_size:sp(20)
                         size_hint:.5, None
                         height:sp(40)
                         multiline:False
@@ -167,8 +206,11 @@
                             root.ver_entr('db9','Ex: ABC1423')
                 BoxLayout:
                     orientation:'vertical'
-                    Button:
+                    Label:
+                        color:0,0,0,1
                         text:"Obs.:"
+                        font_name:'RbConReg'
+                        font_size:sp(20)
                         size_hint:1, None
                         height:dp(40)
                         halign:'center'
@@ -177,6 +219,8 @@
                     TextInput:
                         id:db10
                         text:'Ex: Deslocamento a Torre 05'
+                        font_name:'RbConReg'
+                        font_size:sp(20)
                         size_hint:1, None
                         height:sp(80)
                         multiline:False
