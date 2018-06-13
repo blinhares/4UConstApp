@@ -58,8 +58,9 @@ class DiarBord(Screen):
             else:
                 self.ids['db' + str(i)].color = (1, 1, 1, 1)
             i = i +1
+        #todo ver nescessiade destas duas linha
         if dpad[i - 2].find(self.ids['db' + str(i - 1)].text) >= 0:
-            self.ids['db' + str(i - 1)].text = "Sem Comentarios"
+            self.ids['db' + str(i - 1)].text = "-"
         contador = contador - 1
         if contador > 0:
             popup = Popup(title='Aviso', content=Label(text='Dados Incompletos.\nFavor preencher todos os campos.'),
@@ -82,6 +83,7 @@ class DiarBord(Screen):
         #CRIA ID DE SALVAMENTO#
         idsalv = '#DB#' + dados['Dia'] + dados['Mes'] + dados['Hora']
         store[idsalv]=dados
+        #todo implementar melhor a menssagem( colocar um try)
         popup = Popup(title='Aviso', content=Label(text='Dados Salvos'),
                       auto_dismiss=True, size_hint=(1, .5))
         popup.open()
@@ -91,21 +93,46 @@ class DiarBord(Screen):
         while i < 11:
             self.ids['db' + str(i)].text = self.dadopadrao[i - 1]
             i = i + 1
-    def env_email(self):
-        corpemail = ""
-        for dado in self.dadopadrao:
-            corpemail = corpemail + dado + ":"
-        corpemail = corpemail + "\n"
-        i = 1
-        while i < 11:
-            corpemail = corpemail + self.ids['db' + str(i)].text + ":"
-            i = i + 1
-        corpemail = corpemail + "\n"
-        print(corpemail)
-        email.send(recipient="brunobarbosa@quatrou.com.br",
-                   subject="#DIARIO_DE_BORDO#",text=corpemail,create_chooser=False)
 
 class MenuApp(App):
+    def enviar_dados(self,chave,legenda):
+        store = JsonStore('4u.json')
+        # procura linha com a chave
+        try:
+            for item in store:
+                if item.find(chave) >= 0:
+                    chaveencontrada = True
+                    break
+                else:
+                    popup = Popup(title='Aviso', content=Label(text='Nao Existem Dados a Enviar'),
+                                  auto_dismiss=True, size_hint=(1, .5))
+                    popup.open()
+                    break
+            #todo verificar legenda fica louca
+            if chaveencontrada == True:
+                texto = ""
+                for leg in legenda:
+                    texto = texto + leg + ";"
+                texto = texto + "\n"
+                for item in store:
+                    if item.find(chave) >= 0:
+                        #pegar cada valor de cada item que é compatival com a chave
+                        aux = store[item]
+                        for leg in legenda:
+                            texto = texto + aux[leg] + ";"
+                        texto = texto + "\n"
+                    else:
+                        pass
+                email.send(recipient="brunobarbosa@quatrou.com.br",
+                           subject=chave, text=texto, create_chooser=False)
+            else:
+                pass
+        except:
+            popup = Popup(title='Aviso', content=Label(text='Nao Existem Dados a Enviar'),
+                          auto_dismiss=True, size_hint=(1, .5))
+            popup.open()
+
+
     def build(self):
         return GerTela()
 
