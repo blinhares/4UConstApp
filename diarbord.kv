@@ -22,12 +22,12 @@
                 height:dp(440)
                 orientation:'vertical'
                 Label:
-                    font_size:sp(24)
-                    color:0,0,0,1
                     text:'Diario de Bordo'
+                    font_size:sp(28)
+                    color:0,0,0,1
                     font_name:'RbConReg'
                     size_hint:1, None
-                    height:dp(40)
+                    height:sp(48)
                 GridLayout:
                     cols:2
                     size_hint:1, None
@@ -75,16 +75,34 @@
                         height:dp(40)
                         values:'Montagem', 'Guindastes', 'Transportes','Eletromecanica', 'Adm.'
 
-                Label:
-                    text:"Data"
-                    font_name:'RbConReg'
-                    font_size:sp(20)
-                    color:0,0,0,1
+                BoxLayout:
                     size_hint:1, None
                     height:dp(40)
-                    halign:'center'
-                    valign:'center'
-                    text_size: self.size
+                    orientation:'horizontal'
+                    Label:
+                        text:"Data"
+                        font_name:'RbConReg'
+                        font_size:sp(20)
+                        color:0,0,0,1
+                        size_hint:1, None
+                        height:dp(40)
+                        halign:'center'
+                        valign:'center'
+                        text_size: self.size
+                    AnchorLayout:
+                        size_hint:None, None
+                        height:dp(40)
+                        width:dp(55)
+                        Image:
+                            source: 'img/datahora.png'
+                            size_hint:1, None
+                            height:dp(40)
+                        Button:
+                            size_hint:1, None
+                            height:dp(40)
+                            opacity:0
+                            on_press:
+                                root.hora_e_data()
                 GridLayout:
                     cols:3
                     size_hint:1, None
@@ -110,7 +128,7 @@
                         valign:'center'
                         size_hint:1, None
                         height:dp(40)
-                        values:'Janeiro', 'Fevereiro', 'Marco','Abril', 'Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'
+                        values:'01', '02', '03','04', '05','06','07','08','09','10','11','12'
                     Spinner:
                         id:db5
                         text:"Ano"
@@ -155,7 +173,7 @@
                         height:dp(40)
                         values:'00','10', '20', '30','40','50'
                 GridLayout:
-                    cols:2
+                    cols:3
                     size_hint:1, None
                     height:dp(80)
                     Label:
@@ -171,6 +189,16 @@
                     Label:
                         color:0,0,0,1
                         text:"Placa do Carro:"
+                        font_name:'RbConReg'
+                        font_size:sp(20)
+                        size_hint:1, None
+                        height:dp(40)
+                        halign:'center'
+                        valign:'center'
+                        text_size: self.size
+                    Label:
+                        color:0,0,0,1
+                        text:"Hodometro (km):"
                         font_name:'RbConReg'
                         font_size:sp(20)
                         size_hint:1, None
@@ -204,6 +232,19 @@
                         text_size: self.size
                         on_focus:
                             root.ver_entr('db9','Ex: ABC1423')
+                    TextInput:
+                        id:db10
+                        text:'Ex: 23999'
+                        font_name:'RbConReg'
+                        font_size:sp(20)
+                        size_hint:.5, None
+                        height:sp(40)
+                        multiline:False
+                        halign:'center'
+                        valign:'center'
+                        text_size: self.size
+                        on_focus:
+                            root.ver_entr('db10','Ex: 23999')
                 BoxLayout:
                     orientation:'vertical'
                     Label:
@@ -217,7 +258,7 @@
                         valign:'center'
                         text_size: self.size
                     TextInput:
-                        id:db10
+                        id:db11
                         text:'Ex: Deslocamento a Torre 05'
                         font_name:'RbConReg'
                         font_size:sp(20)
@@ -228,7 +269,7 @@
                         valign:'center'
                         text_size: self.size
                         on_focus:
-                            root.ver_entr('db10','Ex: Deslocamento a Torre 05')
+                            root.ver_entr('db11','Ex: Deslocamento a Torre 05')
         GridLayout:
             cols:3
             size_hint:1, None
@@ -238,7 +279,7 @@
                 height:dp(40)
                 width:dp(55)
                 Image:
-                    source: 'img/cancel.png'
+                    source: 'img/back.png'
                     size_hint:1, None
                     height:dp(40)
                 Button:

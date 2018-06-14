@@ -55,9 +55,9 @@
             text:'Menu Principal'
             color:0,0,0,1
             font_name:'RbConReg'
-            font_size:sp(24)
+            font_size:sp(28)
             size_hint:1,None
-            height:dp(40)
+            height:sp(48)
         ScrollView:
             size_hint:1,1
             BoxLayout:
@@ -68,19 +68,23 @@
                     font_size:sp(20)
                     font_name:'RbConReg'
                     size_hint:1, None
-                    height:dp(55)
+                    height:sp(40)
                     on_press:
                         root.manager.current = 'db'
 
         GridLayout:
             cols:2
             size_hint:1, None
-            height:dp(40)
+            height:sp(44)
             Button:
                 text:'teste1'
+                font_name:'RbConReg'
+                font_size:sp(24)
                 on_press:
                     Factory.Info2().open()
             Button:
                 text:'teste2'
+                font_name:'RbConReg'
+                font_size:sp(24)
                 on_press:
                     Factory.Info2().open()

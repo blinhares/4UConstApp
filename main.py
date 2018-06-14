@@ -13,6 +13,7 @@ from kivy.core.window import Window
 from kivy.storage.jsonstore import JsonStore
 from kivy.factory import Factory
 from plyer import email
+from datetime import datetime
 
 
 #Coloca teclado abaixo da entrada e muda fundo para branco
@@ -25,8 +26,16 @@ class GerTela(ScreenManager):
 
 class MenuP(Screen):
     pass
-
 class DiarBord(Screen):
+
+    def hora_e_data(self):
+        diaehora = datetime.now()
+        self.ids.db3.text = str(diaehora.day)
+        self.ids.db4.text = str(diaehora.month)
+        self.ids.db5.text = str(diaehora.year)
+        self.ids.db6.text = str(diaehora.hour)
+        self.ids.db7.text = str(diaehora.minute)
+
     def on_pre_enter(self, *args):
         Window.bind(on_keyboard=self.voltar)
     def voltar (sel,window, key,*args):
@@ -44,14 +53,14 @@ class DiarBord(Screen):
                 self.ids[idn].text = texpadr
 
     legenda = ['Obra', 'Equipe', 'Dia', 'Mes', 'Ano',
-               'Hora', 'Minutos', 'Nome', 'Placa', 'Obs']
+               'Hora', 'Minutos', 'Nome', 'Placa','Hodometro', 'Obs']
     dadopadrao = ['Escolha Uma Obra', 'Escolha Uma Equipe', 'Escolha o dia', 'Escolha o Mes', 'Escolha o Ano',
-                  'Insira a Hora', 'Insira os Minutos', 'Ex: Pedro', 'Ex: ABC1423', 'Ex: Deslocamento a Torre 05']
+                  'Insira a Hora', 'Insira os Minutos', 'Ex: Pedro', 'Ex: ABC1423','Ex: 23999', 'Ex: Deslocamento a Torre 05']
     def verificar(self):
         dpad = self.dadopadrao
         i = 1
         contador = 0
-        while i < 11 :
+        while i < (len(self.legenda) + 1) :
             if dpad[i - 1].find(self.ids['db'+str(i)].text) >= 0:
                 self.ids['db' + str(i)].color=(1,0,0,1)
                 contador = contador + 1
@@ -90,7 +99,7 @@ class DiarBord(Screen):
     def limp_dados(self):
         i = 1
         contador = 0
-        while i < 11:
+        while i < (len(self.legenda) + 1):
             self.ids['db' + str(i)].text = self.dadopadrao[i - 1]
             i = i + 1
 
