@@ -102,8 +102,18 @@ class DiarBord(Screen):
         while i < (len(self.legenda) + 1):
             self.ids['db' + str(i)].text = self.dadopadrao[i - 1]
             i = i + 1
+    def enviar_db(self,chave,legenda):
+        corpo_do_email = MenuApp().coletar_dados(chave,legenda)
+        if corpo_do_email == None:
+            popup = Popup(title='Aviso', content=Label(text='Nao Existem Dados a Enviar'),
+                          auto_dismiss=True, size_hint=(1, .5))
+            popup.open()
+        else:
+            email.send(recipient="brunobarbosa@quatrou.com.br",
+                       subject=chave, text=corpo_do_email, create_chooser=False)
 
 class MenuApp(App):
+    '''
     def enviar_dados(self,chave,legenda):
         store = JsonStore('4u.json')
         # procura linha com a chave
@@ -140,7 +150,36 @@ class MenuApp(App):
             popup = Popup(title='Aviso', content=Label(text='Nao Existem Dados a Enviar'),
                           auto_dismiss=True, size_hint=(1, .5))
             popup.open()
-
+    '''
+    def coletar_dados(self,chave,legenda):
+        store = JsonStore('4u.json')
+        # procura linha com a chave
+        try:
+            for item in store:
+                if item.find(chave) >= 0:
+                    chaveencontrada = True
+                    break
+                else:
+                    break
+            if chaveencontrada == True:
+                texto = ""
+                for leg in legenda:
+                    texto = texto + leg + ";"
+                texto = texto + "\n"
+                for item in store:
+                    if item.find(chave) >= 0:
+                        #pegar cada valor de cada item que é compatival com a chave
+                        aux = store[item]
+                        for leg in legenda:
+                            texto = texto + aux[leg] + ";"
+                        texto = texto + "\n"
+                    else:
+                        pass
+                return texto
+            else:
+                pass
+        except:
+            pass
 
     def build(self):
         return GerTela()
